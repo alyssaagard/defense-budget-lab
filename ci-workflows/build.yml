@@ -1,0 +1,52 @@
+name: Build the page from the workbook
+
+# The page in this repository is generated. This workflow proves it can still be
+# generated from the workbook that sits beside it, and that the result is the
+# file that is committed. Drift between the two is a failure, because the whole
+# point of the project is that every figure on the page traces back to a cell.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Build the page
+        run: |
+          mkdir -p build
+          python src/fy2627_budget_lab.py \
+            --xlsx data/FY2026_FY2027_Defense_Budget_Analytics.xlsx \
+            --out  build/index.html \
+            --icons assets/icons
+
+      - name: Confirm the committed page matches a fresh build
+        run: |
+          # The build stamps the date it ran, so that one line is normalised
+          # before the comparison. Everything else must match byte for byte.
+          sed -E 's/Built [0-9]{1,2} [A-Za-z]+ [0-9]{4}/Built DATE/g' build/index.html > /tmp/fresh.html
+          sed -E 's/Built [0-9]{1,2} [A-Za-z]+ [0-9]{4}/Built DATE/g' index.html       > /tmp/committed.html
+          if ! diff -q /tmp/fresh.html /tmp/committed.html > /dev/null; then
+            echo "index.html is not what the workbook now produces. Rebuild and commit it:"
+            echo "  python src/fy2627_budget_lab.py --xlsx data/FY2026_FY2027_Defense_Budget_Analytics.xlsx --out index.html"
+            diff /tmp/committed.html /tmp/fresh.html | head -40
+            exit 1
+          fi
+          echo "The committed page matches a fresh build."
+
+      - name: Confirm the page fetches nothing
+        run: python tools/check_page.py index.html

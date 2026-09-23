@@ -1,0 +1,46 @@
+cff-version: 1.2.0
+title: "Defense Budget Lab, FY2026 and FY2027"
+message: "If you use this work, please cite it as below."
+type: dataset
+authors:
+  - family-names: Agard
+    given-names: "Alyssa I."
+    email: economics@alyssaagard.dev
+    website: "https://alyssaagard.dev"
+abstract: >-
+  An interactive reading of Congressional Research Service reports R48860 and
+  R49023 on funding for selected weapon systems, joined line by line across
+  fiscal years 2026 and 2027, together with a model of the burdened cost of
+  military basic pay and a construction of regular military compensation built
+  on the published 2023 compensation tables and the M-1 budget exhibits. The
+  work comprises a verified 27 sheet workbook, a generator that reads it, and a
+  self contained page that presents it.
+keywords:
+  - defense budget
+  - defense policy
+  - appropriations
+  - authorization
+  - weapon systems
+  - military compensation
+  - Congressional Research Service
+  - reproducible research
+license: CC-BY-4.0
+version: "1.0.0"
+date-released: "2026-09-22"
+# Set these to the real locations once the repository is pushed.
+repository-code: "https://github.com/alyssaagard/defense-budget-lab"
+url: "https://alyssaagard.github.io/defense-budget-lab/"
+references:
+  - type: report
+    title: "FY2026 Defense Budget: Funding for Selected Weapon Systems"
+    number: "R48860"
+    institution:
+      name: "Congressional Research Service"
+    date-released: "2026-07-02"
+  - type: report
+    title: "FY2027 Defense Budget: Funding for Selected Weapon Systems"
+    number: "R49023"
+    institution:
+      name: "Congressional Research Service"
+    date-released: "2026-09-03"
+    notes: "Version 4"
