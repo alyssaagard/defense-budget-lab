@@ -255,7 +255,7 @@ active-duty force.
 A worked example, exactly as the page renders it: a personal grant of two
 million dollars is **0.00098 percent** of the $204.5B FY2027 discretionary
 request, worth **0.0021 percent** of a one-year across-the-board pay raise, and
-**$2 a member** spread across the force. It buys **0.086** of a Columbia-class
+**$2 a member** spread across the force. It buys **0.0001** of a Columbia-class
 submarine at the $16.04B a boat CRS implies.
 
 Because a claim of your own has nothing to take a percentage of, the percentage
