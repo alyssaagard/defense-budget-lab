@@ -2777,7 +2777,9 @@ function renderOverview() {
       ? 'The FY2027 request asks ' + B(n(DATA.cats27.total.total), 1) + ' across the '
         + N(tot.n) + ' lines inside the eight category tables, of which '
         + B(n(DATA.cats27.total.mand), 1) + ' is mandatory money carried over from reconciliation. '
-        + 'Three committees have reported. Nothing has been enacted, so every enacted column is blank.'
+        + 'Three committees have reported. Nothing has been enacted, so every enacted column is blank. '
+        + 'The fiscal year nonetheless began on 1 October 2026, and until Congress acts the Department '
+        + 'of Defense is funded by continuing resolution at the FY2026 rate.'
       : 'The FY2026 request asked ' + B(n(DATA.cats26.total.total), 1) + ' across '
         + N(tot.n) + ' selected systems, ' + B(n(DATA.cats26.total.recon), 1)
         + ' of it mandatory. Both the authorization and the appropriation are now law, and the '
@@ -3205,11 +3207,16 @@ function renderPay() {
   const AL = PAY.allow, W = AL.weighted;
   $('#rmcLead').textContent = 'Regular military compensation is basic pay, the average housing '
     + 'allowance, the subsistence allowance, and the federal income tax advantage that follows '
-    + 'from the two allowances not being taxed. The published Selected Military Compensation '
-    + 'Tables are dated 1 January 2023, so the 2023 structure supplies the shape and the M-1 for '
-    + 'the priced year supplies the level. The housing figure is the amount per member drawing '
-    + 'cash housing, not a published allowance rate, because the M-1 line includes the overseas '
-    + 'housing allowance.';
+    + 'from the two allowances not being taxed. The shape across grades comes from the Selected '
+    + 'Military Compensation Tables of 1 January 2023 and the level from the M-1 for the priced '
+    + 'year. That edition is not the most recent: a CY2024 edition is publicly posted, and a '
+    + '1 January 2026 edition exists, cited by CRS as on file with CRS, but is not publicly '
+    + 'posted. The housing figure is the amount per member drawing cash housing, not a published '
+    + 'allowance rate, because the M-1 line includes the overseas housing allowance. Tested '
+    + 'against the six grades for which CRS publishes the 1 January 2026 figures, the total '
+    + 'lands within about six percent, but housing and subsistence run above the published '
+    + 'allowances at every grade and the tax advantage runs below the published figure at E-5, '
+    + 'O-1 and O-4. Section H of Pay_Allowances in the workbook sets out the comparison.';
   let rh = '<thead><tr><th>Grade</th><th class="num">Strength</th>'
     + '<th class="num">Basic pay</th><th class="num">Housing</th><th class="num">Subsistence</th>'
     + '<th class="num">Tax advantage</th><th class="num">Regular military compensation</th>'

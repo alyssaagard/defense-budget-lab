@@ -1,6 +1,7 @@
 # FY2026 and FY2027 Defense Budget Lab: build and verification note
 
-Alyssa I. Agard. 22 September 2026. Second revision.
+Alyssa I. Agard. 22 September 2026. Second revision, with a third and a fourth
+recorded in parts 7 and 8 below.
 
 Three files are delivered:
 
@@ -361,3 +362,91 @@ interaction checks and the Chromium pass repeat clean, with zero script errors
 and zero network requests. The copy of the workbook carried inside the page is
 byte identical to the one in `data/`, and the page's source table now shows all
 seventeen references with working links.
+
+## 8. Fourth revision, 1 November 2026
+
+**A statement about the compensation tables was wrong, and has been corrected
+everywhere it was published.** The workbook, the page, this repository's README
+and the report all said, in different words, that the Selected Military
+Compensation Tables had not been published since the edition of 1 January 2023.
+Two things show otherwise. A CY2024 edition is publicly posted on the
+Department's military pay site, and it is the most recent edition that is. And
+CRS IF10532, *Defense Primer: Regular Military Compensation*, updated 7 July
+2026, sources its Table 1 to the Selected Military Compensation Tables of
+1 January 2026, page B-3, "on file with CRS": that edition exists but is not
+publicly posted. The corrected statement is in two parts accordingly. The cells
+changed are `Sources_FY2027` S13, `Pay_Allowances` A3, A70, A87 and A95,
+`QA_FY2027` A71 and B71, `Pay_Module` A102, which still said the tables had not
+been supplied, and the Guide's line for `Pay_Allowances`; on the page, the lead
+paragraph of the regular military compensation table.
+
+**The source list runs to S18.** S14, IF10532, had been dated only "Updated
+2026". It now names the version of 7 July 2026, the one held in the reference
+set, and says what its Table 1 supplies. S18, the CY2024 edition of the
+compensation tables, is new; it is cited for the fact that it is the most recent
+edition publicly posted and supplies no figure. To keep a blank row between the
+list and the notes beneath it, which is where the generator stops reading, the
+notes moved down one row.
+
+**The scaling behind regular military compensation has been tested against a
+published figure.** `Pay_Allowances` section H sets the model, at both priced
+years, against the six grades in IF10532 Table 1, every comparison a live
+formula. The model does not reproduce them. Total compensation lands above the
+published figure at all six grades, by about 1 to 3 percent for the officer
+grades and 5 to 6 percent for the enlisted ones, but the components disagree.
+Published housing grew by 13 to 15 percent between the 2023 and 2026 editions at
+five of the six grades, which supports carrying the 2023 shape forward with one
+factor per group, but the factors fitted to the M-1 run housing 14 to 24 percent
+above the published allowance everywhere except E-1. The M-1 officer subsistence
+line pays for about 4 percent more officer-years than the 30 September 2025
+strength in FY2026, and about 8 percent more in FY2027, so the factors carry a
+headcount difference as well as a rate. The marginal rate behind the tax
+advantage agrees with the published one at E-1, E-8 and O-6, and the tax
+advantage runs about a quarter low at E-5, O-1 and O-4. Nothing upstream reads
+section H, and the burden rates derived from the M-1
+are ratios of M-1 dollars, so no figure on the page moved.
+
+**The documented build now reproduces the committed page.** The page committed
+in September carried favicons with the same pixels as the files in
+`assets/icons` but different bytes. Rebuilt with the command in the README,
+which reads `assets/icons`, the page would therefore have differed from the
+committed copy, and the drift check in `ci-workflows/build.yml` would have failed
+on its first run. The page is now built from `assets/icons` as the command says.
+The icons look the same, and they account for about 23 kilobytes of the page's
+growth; the larger workbook it carries accounts for most of the rest.
+
+**What was checked, and how.** The workbook was edited with openpyxl and
+recalculated in LibreOffice 24.2.7.2, the version that last saved it, with zero
+formula errors across 15,635 formulas. A cell by cell comparison with the
+September workbook, covering formulas, cached values and cell styles on every
+sheet, finds no change outside the cells listed above and the new section H.
+The generator verifies 513 sheet and header cells, as before. The page's data
+payload was compared with the September build field by field: every figure is
+unchanged, and the differences are the corrected text, the three source entries
+and the build date. `tools/check_page.py` passes, the workbook carried inside the
+page is byte identical to the one in `data/`, and Chromium loads the page with
+no script errors and no network requests. The Node engine and jsdom harnesses
+described in part 3 were not re-run for this revision; the page's script changed
+only in one paragraph of text, and its figures did not change.
+
+**One addition before publication, 9 November 2026.** Source entry S12 in
+`Sources_FY2027` now names the bills and committee reports behind R49023's
+committee columns: H.R. 8800 (H.Rept. 119-698), S. 4784 (S.Rept. 119-127) and
+H.R. 9495 (H.Rept. 119-715). It records that the House Appropriations Committee
+approved H.R. 9495 on 24 June 2026, by 34 to 27, while R49023 dates the
+committee's report 26 June 2026, so that the two dates are not read as a
+conflict, and that H.Rept. 119-715 carried no funding table quantities. On the
+page, the FY2027 overview gains one sentence stating that the fiscal year began
+on 1 October 2026 and that the Department is funded by continuing resolution at
+the FY2026 rate until Congress acts. The workbook change was made directly in
+the file, to that one cell's text and its row height, so no formula was
+rewritten and nothing needed recalculating; a cell by cell comparison with the 1
+November workbook, covering formulas, cached values and cell styles on every
+sheet, finds that cell and nothing else. The 1 November page rebuilds byte for
+byte from its own workbook once the build date is normalised, so the build is
+reproducible, and the new page differs from it only in the source entry, the
+overview sentence, the workbook it carries and the build date. The generator
+verifies 513 sheet and header cells, `tools/check_page.py` passes, the workbook
+carried inside the page is byte identical to the one in `data/`, now 429,376
+bytes, and Chromium loads the page with no script errors and no network
+requests.

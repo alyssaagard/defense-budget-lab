@@ -130,9 +130,11 @@ The pay module was the part that would not come from a table. Regular military
 compensation is basic pay plus the housing and subsistence allowances plus the
 federal income tax advantage that follows from those allowances not being taxed,
 and the Department publishes the resulting figures in its Selected Military
-Compensation Tables. The most recent edition is dated 1 January 2023, and a
-FY2027 edition cannot exist until the FY2027 pay raise is set, so there was
-nothing to look up. I rebuilt it instead: the published 2023 tables supply the
+Compensation Tables. The most recent edition publicly posted is CY2024, a
+1 January 2026 edition exists but is not publicly posted, and an FY2027 edition
+cannot exist until the FY2027 pay raise is set, so there was nothing current to
+look up. I rebuilt it instead: the published 2023 tables, the edition in hand
+when the model was built, supply the
 structure, meaning the share of each grade drawing cash housing and the shape of
 the allowance across grades, and the M-1 budget exhibit for the priced year
 supplies the level, with one scale factor per group fitted so that the grades
@@ -144,6 +146,15 @@ share across the single and married-filing-jointly brackets. The result is
 labelled for what it is, housing per member drawing cash rather than a published
 allowance rate, because the M-1 line it is fitted to includes the overseas
 housing allowance.
+
+That construction has now been tested against the six grades for which CRS
+publishes the 1 January 2026 figures (IF10532, Table 1), and it does not
+reproduce them. The total lands within about six percent of the published
+figure at every grade, but housing and subsistence run above the published
+allowances at every grade, and the tax advantage runs about a quarter low at
+E-5, O-1 and O-4, most likely because the marginal rate is taken at basic pay
+alone, before the allowances carry taxable income into the next bracket.
+Section H of `Pay_Allowances` sets out the comparison.
 
 The page came last, and it is generated rather than written. The generator reads
 the workbook and lays it out; it never recomputes a figure the workbook already
@@ -178,7 +189,7 @@ themselves.
 
 ## Sources
 
-Seventeen references, numbered S1 to S17, are listed in full on the workbook's
+Eighteen references, numbered S1 to S18, are listed in full on the workbook's
 two `Sources` sheets and reproduced on the page under **Method and sources**,
 each with its publisher, its date, what it supplies and a link. The principal
 ones are:
@@ -192,7 +203,11 @@ ones are:
 - Office of the Under Secretary of Defense (Comptroller), **Military Composite
   Standard Pay and Reimbursement Rates**, Tab K, FY2026 and FY2027 editions.
 - Office of the Under Secretary of Defense for Personnel and Readiness,
-  **Selected Military Compensation Tables**, 1 January 2023.
+  **Selected Military Compensation Tables**, 1 January 2023, with the CY2024
+  edition cited as the most recent publicly posted.
+- Congressional Research Service, **IF10532**, *Defense Primer: Regular Military
+  Compensation*, updated 7 July 2026, for the definition of regular military
+  compensation and the published figures the pay model is checked against.
 - Executive Order of 18 December 2025, adjusting certain rates of pay, effective
   1 January 2026.
 - Congressional Research Service **IF10684** and **IF10685**, for active-duty

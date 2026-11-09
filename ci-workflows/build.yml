@@ -36,10 +36,11 @@ jobs:
 
       - name: Confirm the committed page matches a fresh build
         run: |
-          # The build stamps the date it ran, so that one line is normalised
-          # before the comparison. Everything else must match byte for byte.
-          sed -E 's/Built [0-9]{1,2} [A-Za-z]+ [0-9]{4}/Built DATE/g' build/index.html > /tmp/fresh.html
-          sed -E 's/Built [0-9]{1,2} [A-Za-z]+ [0-9]{4}/Built DATE/g' index.html       > /tmp/committed.html
+          # The build stamps the date it ran in two places, the footer and the
+          # data payload, so both are normalised before the comparison.
+          # Everything else must match byte for byte.
+          sed -E -e 's/Built [0-9]{1,2} [A-Za-z]+ [0-9]{4}/Built DATE/g' -e 's/"built":"[0-9]{1,2} [A-Za-z]+ [0-9]{4}"/"built":"DATE"/g' build/index.html > /tmp/fresh.html
+          sed -E -e 's/Built [0-9]{1,2} [A-Za-z]+ [0-9]{4}/Built DATE/g' -e 's/"built":"[0-9]{1,2} [A-Za-z]+ [0-9]{4}"/"built":"DATE"/g' index.html       > /tmp/committed.html
           if ! diff -q /tmp/fresh.html /tmp/committed.html > /dev/null; then
             echo "index.html is not what the workbook now produces. Rebuild and commit it:"
             echo "  python src/fy2627_budget_lab.py --xlsx data/FY2026_FY2027_Defense_Budget_Analytics.xlsx --out index.html"

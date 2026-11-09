@@ -44,7 +44,7 @@ what each one holds and which of them the page reads.
 | `Year_Compare` | The crosswalk. 103 rows joining the two years, the bridge that reconciles the totals with the change column, and the lines present in one year only. | yes |
 | `Pay_Composite` | Composite standard pay rates per grade per service, FY2026 and FY2027 editions. | yes |
 | `Pay_Module` | The two year pay model: M-1 derived rates, assumptions, and the 24 grade cost table. | yes |
-| `Pay_Allowances` | Allowances and regular military compensation per grade, with the housing reconciliation. | yes |
+| `Pay_Allowances` | Allowances and regular military compensation per grade, with the housing reconciliation and, in section H, a cross-check against the published 1 January 2026 figures for six grades (CRS IF10532, Table 1). | yes |
 | `QA_FY2027` | Every check behind the FY2027 extension, in eight lettered sections. | yes |
 | `Sources_FY2027` | The FY2027 source list. | yes |
 
