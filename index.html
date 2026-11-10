@@ -402,7 +402,7 @@ footer p{margin:0 0 8px;max-width:80ch}
     <div class="card">
       <div class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M4 7h16M4 12h16M4 17h10"/><circle cx="18.5" cy="17" r="2.5"/></svg></div>
       <h5>Written instructions, priced</h5>
-      <p>Type an instruction the way you would say it to a staffer. The composer reads it, prices it against the baseline you choose, and shows the offset it implies.</p>
+      <p>Type an instruction in ordinary words. The composer reads it, prices it against the baseline you choose, and shows the offset it implies.</p>
     </div>
     <div class="card">
       <div class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M12 3v18M5 8l7-5 7 5M5 16l7 5 7-5"/></svg></div>
@@ -441,7 +441,7 @@ footer p{margin:0 0 8px;max-width:80ch}
   <div class="sect">
     <p class="kicker">Scenario composer</p>
     <h3>Write the change, and see what it costs</h3>
-    <p>One instruction a line. The parser understands add, cut, set, and zero, in dollars or in percentages, against a named system, a category, a service, or the whole portfolio. Add an offset clause and the money is taken from somewhere.</p>
+    <p>Enter one instruction a line. The parser understands add, cut, set, and zero, in dollars or in percentages, against a named system, a category, a service, or the whole portfolio. An offset clause says where the money comes from.</p>
     <div class="grid2">
       <div class="panel">
         <div class="field">
@@ -492,7 +492,7 @@ footer p{margin:0 0 8px;max-width:80ch}
   <div class="sect">
     <p class="kicker">Claim tester</p>
     <h3>Put a number in proportion</h3>
-    <p>A figure on its own says little. This takes a change and expresses it four ways: as a share of its own line, as units of the thing it buys, as a cut somewhere else, and as an across-the-board military pay raise. The change can be a percentage of a line CRS printed, an amount you type in any unit from dollars to trillions, or a claim of your own that appears in neither report.</p>
+    <p>This panel expresses a change four ways: as a share of its own line, as units of the thing it buys, as a cut somewhere else, and as an across-the-board military pay raise. The change can be a percentage of a line CRS printed, an amount you type in any unit from dollars to trillions, or a claim of your own that appears in neither report.</p>
     <div class="grid3">
       <div class="panel">
         <div class="field"><label for="clSys">Line, or a claim of your own</label>
@@ -601,7 +601,7 @@ footer p{margin:0 0 8px;max-width:80ch}
   <div class="sect">
     <p class="kicker">Year on year</p>
     <h3>FY2026 against FY2027, line by line</h3>
-    <p>The two reports do not share a vocabulary. What follows is the crosswalk the workbook settled on, stated before any figure is compared.</p>
+    <p>The comparison rests on the crosswalk below, which is set out before any figure is compared.</p>
     <div class="panel"><div id="cmpNotes"></div></div>
     <div class="figrow" id="cmpFigs"></div>
     <div class="chart"><p class="ct" id="cmpChartT"></p><div id="cmpChart"></div></div>
@@ -1360,7 +1360,7 @@ function renderOverview() {
   const isBoth = S.year === 'both';
   $('#heroKicker').textContent = isBoth ? 'Fiscal years 2026 and 2027' : y.label;
   $('#heroLead').innerHTML = isBoth
-    ? 'Two Congressional Research Service reports, one spine. FY2026 is settled: an authorization and an appropriation are law. FY2027 is not: the request has three committee marks against it and nothing enacted. Where a line appears in only one of the two reports it stays blank here, because a programme CRS did not list is not a programme cut to zero.'
+    ? 'The two Congressional Research Service reports are joined here on one spine. FY2026 is settled: an authorization and an appropriation are law. FY2027 is not: the request has three committee marks against it and nothing enacted. Where a line appears in only one of the two reports it stays blank here, because a programme CRS did not list is not a programme cut to zero.'
     : (YEAR === 2027
       ? 'The FY2027 request asks ' + B(n(DATA.cats27.total.total), 1) + ' across the '
         + N(tot.n) + ' lines inside the eight category tables, of which '
@@ -1420,7 +1420,7 @@ function renderOverview() {
     $('#ovTitle').textContent = 'The eight categories, both years side by side';
     $('#ovLead').textContent = 'FY2026 columns are as enacted where an enacted figure exists. '
       + 'FY2027 columns are the request and the three committee marks. The two years are not '
-      + 'like for like and the crosswalk section says exactly why.';
+      + 'like for like; the Year on year tab sets out the crosswalk.';
     $('#ovChartT').textContent = 'Total request by category, FY2026 against FY2027';
     $('#ovChart').innerHTML = hChart(CATS.map((c, i) => ({
       label: c, value: n(DATA.cats27.rows[i].total) - n(DATA.cats26.rows[i].total)
@@ -1450,8 +1450,8 @@ function renderOverview() {
       + 'in what CRS chose to tabulate.';
   } else if (YEAR === 2027) {
     $('#ovTitle').textContent = 'The eight categories CRS tabulates for FY2027';
-    $('#ovLead').textContent = 'Computed from the line items, set beside the figure CRS states in '
-      + 'its own narrative. Where the two disagree the gap is shown rather than reconciled.';
+    $('#ovLead').textContent = 'The discretionary figure is computed from the line items and set beside the figure CRS '
+      + 'states in its own narrative, and any gap between the two is shown.';
     $('#ovChartT').textContent = 'Committee marks against the discretionary request, billions of dollars';
     $('#ovChart').innerHTML = vChart(CATS, [
       {name: 'House', color: '#a8506e', data: rows.map(r => n(r.houseDelta))},
@@ -1483,8 +1483,8 @@ function renderOverview() {
       + '</tr></tfoot>';
     $('#ovTable').innerHTML = h;
     $('#ovNote').textContent = 'CRS rounds each line to the hundredth of a billion and each '
-      + 'narrative total to the tenth, so a gap of a few hundredths is rounding. Nothing here is '
-      + 'adjusted to close it. The three lines of Appendix Table A-1 sit outside these totals; '
+      + 'narrative total to the tenth, so a gap of a few hundredths is rounding. '
+      + 'The three lines of Appendix Table A-1 sit outside these totals; '
       + 'they carry ' + B(n(DATA.cats27.a1total.mand), 1) + ' of mandatory money on their own.';
   } else {
     $('#ovTitle').textContent = 'The eight categories CRS tabulates for FY2026';
@@ -1589,7 +1589,7 @@ function renderScenario() {
                + (e.scopeKind === 'category' || e.scopeKind === 'service' || e.scopeKind === 'all'
                   ? 'Spread across ' + e.ids.length + ' lines in proportion to their baseline.' : ''))
             : e.msg) + '</div></div>').join('')
-    : '<p class="note" style="margin-top:0">Nothing written yet. One instruction a line, then press Price it.</p>';
+    : '<p class="note" style="margin-top:0">Write one instruction a line, then press Price it.</p>';
 
   const catsD = CATS.map(c => sum(rows.filter(r => r.d.cat === c), r => r.delta));
   $('#scenChartT').textContent = 'Net change by category against ' + R.baseLabel.toLowerCase()
@@ -1736,7 +1736,7 @@ function renderClaim() {
   if (!c.own) h += '<p class="note">' + esc(c.d.desc || c.d.footnote || '') + '</p>';
   else h += '<p class="note">A claim of your own is measured against the same figures as every '
     + 'line on this page, but it is not one of them. It has no baseline, no published quantity '
-    + 'and no unit cost, so those rows stay blank rather than being invented.</p>';
+    + 'and no unit cost, so those rows stay blank.</p>';
   $('#claimBody').innerHTML = h;
 }
 
@@ -1858,7 +1858,7 @@ function renderProjection() {
   const cum = sum(rows, r => r.cum), first = sum(rows, r => r.gaps[0]);
   const bal = n(DATA.ctx.proj.balance);
   $('#projLead').textContent = 'DOD allocated almost all of its reconciliation money in FY2026. '
-    + 'Those dollars do not repeat. This holds the FY2026 programme constant and asks what '
+    + 'Those dollars do not repeat. The projection holds the FY2026 programme constant and asks what '
     + 'discretionary appropriations would have to carry from FY2027 onward to sustain it, before '
     + 'any new content. It is arithmetic on a stated assumption, not a forecast.';
   $('#projFigs').innerHTML = [
@@ -2254,8 +2254,8 @@ function buildControls() {
   $('#y27').setAttribute('aria-pressed', String(S.year === 2027));
   $('#yboth').setAttribute('aria-pressed', String(S.year === 'both'));
   $('#footNote').textContent = 'Built ' + DATA.meta.built + ' from ' + DATA.meta.workbook
-    + '. Every figure is read from that workbook; none is recalculated here. '
-    + 'The workbook itself travels inside this page and can be downloaded from the '
+    + '. Every figure is read from that workbook. '
+    + 'The workbook is carried inside this page and can be saved with the '
     + 'Workbook button at the top.';
   const amt = $('#clAmt');
   if (amt) amt.textContent = S.claim.type === 'pct' ? ''

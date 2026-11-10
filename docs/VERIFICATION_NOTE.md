@@ -450,3 +450,12 @@ verifies 513 sheet and header cells, `tools/check_page.py` passes, the workbook
 carried inside the page is byte identical to the one in `data/`, now 429,376
 bytes, and Chromium loads the page with no script errors and no network
 requests.
+
+**Plain-language edit, 9 November 2026.** Later the same day, before
+publication, thirteen passages of explanatory text on the page were shortened in
+the generator. No figure, table or check changed, and the workbook is untouched.
+Rebuilt from the same workbook, the page differs from the build described above
+only in those passages. The generator verifies 513 sheet and header cells,
+`tools/check_page.py` passes, and Chromium loads every tab in all three year
+views with no script errors, no network requests and no horizontal overflow at
+1280 or 390 pixels.
